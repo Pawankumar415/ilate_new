@@ -353,6 +353,8 @@ async def verify_payment(
         transaction.updated_on = ist_now
 
         installments_data = request.installments_data
+        print(">>>>>> installments_data ", installments_data)
+        print("*************", installments_data)
 
         for installment_data in installments_data:
             installment_data_db = {
@@ -376,6 +378,7 @@ async def verify_payment(
             )
             db.add(installment)
 
+
         db.commit()
 
         if transaction.status == "captured":
@@ -384,7 +387,7 @@ async def verify_payment(
             Installment.user_id == current_user.user_id
         ).first()
             
-            
+            print("pay amount,","&&&&&&&&&&&&&&&&&&&")
             Installment_db.paid_amount=payment_amount
             Installment_db.status = "paid"
 
@@ -413,6 +416,10 @@ async def verify_payment(
         logger.error(f"Unexpected error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Unexpected error occurred: {str(e)}")
     
+
+
+
+
 ########################################### for installment ###################################################################
 # API 1 - Create Razorpay Order
 @router.post("/pay-next-installment", dependencies=[Depends(JWTBearer()), Depends(get_admin_or_student)])

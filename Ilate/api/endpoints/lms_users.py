@@ -27,10 +27,13 @@ def generate_token(data):
 async def lms_login(credential: LoginInput):
     try:
         response = user_ops.lms_login(credential)
+        
         return response
     except HTTPException as e:
+        
         raise
     except Exception as e:
+       
         return HTTPException(status_code=500, detail=f"login failed: {str(e)}")
 
 

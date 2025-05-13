@@ -116,6 +116,25 @@ router = APIRouter()
 
 
 
+class BulkQuestionCreate(BaseModel):
+    question_paper_id: int
+    question_text: str
+    question_images: Optional[str] = None
+    option1_text: str
+    option1_images: Optional[str] = None
+    option2_text: str
+    option2_images: Optional[str] = None
+    option3_text: str
+    option3_images: Optional[str] = None
+    option4_text: str
+    option4_images: Optional[str] = None
+    correct_ans_text: str
+    correct_ans_images: Optional[str] = None
+    difficulty_level: str
+    per_question_marks: int
+
+
+
 
 def save_upload(upload_file: Optional[UploadFile]) -> Optional[str]:
     if not upload_file:
@@ -130,6 +149,18 @@ def save_upload(upload_file: Optional[UploadFile]) -> Optional[str]:
         return file_path
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error saving file: {str(e)}")
+    
+
+@router.post("/upload/")
+async def upload_file(file:UploadFile=File(...)):
+    try:
+        file_path = save_upload(file)
+        return {"filePath":file_path}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+
+
 
 @router.post("/lesson-test-questions/", response_model=Dict[str, str], dependencies=[Depends(JWTBearer()), Depends(get_admin_or_teacher)])
 async def create_bulk_questions(questions: List[BulkQuestionCreate], db: Session = Depends(get_db)):
@@ -173,6 +204,10 @@ async def create_bulk_questions(questions: List[BulkQuestionCreate], db: Session
         db.rollback()
         print(f"Detailed error: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to create bulk questions: {str(e)}")
+
+
+
+
 
 
 

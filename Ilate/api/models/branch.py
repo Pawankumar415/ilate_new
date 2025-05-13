@@ -11,4 +11,4 @@ class Branch(Base):
     user = relationship("LmsUsers", back_populates="branch")
     student = relationship("Student", back_populates="branch")
     teacher = relationship("Teacher", back_populates="branch")
-    admin_installments = relationship("AdminInstallment", back_populates="branch")
+    

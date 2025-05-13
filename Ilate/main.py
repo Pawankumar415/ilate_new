@@ -308,4 +308,4 @@ async def auth(request: Request, db: Session = Depends(get_db)):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", port=8003, reload=True, host='0.0.0.0')
+    uvicorn.run("main:app", port=8004, reload=True, host='0.0.0.0')

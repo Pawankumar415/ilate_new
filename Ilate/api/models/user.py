@@ -181,6 +181,8 @@ class LmsUsers(Base):
 
     @staticmethod
     def lms_login(credential: LoginInput):
+
+        print(credential,"*****************")
         try:
             session = SessionLocal()
             user = session.query(LmsUsers).filter(LmsUsers.user_email == credential.email,

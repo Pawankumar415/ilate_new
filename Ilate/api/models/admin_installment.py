@@ -20,13 +20,11 @@ class AdminInstallment(Base):
     subject_id = Column(Integer, ForeignKey("subjects.id"), nullable=True)
     module_id = Column(Integer, ForeignKey("modules.id"), nullable=True)
     batch_id = Column(Integer, ForeignKey("batches.id"), nullable=True)
-    branch_id = Column(Integer, ForeignKey("branches.id"))
 
 
-    branch = relationship("Branch", back_populates="admin_installments")
     course = relationship("Course", back_populates="admin_installments")
     standard = relationship("Standard", back_populates="admin_installments")
     subject = relationship("Subject", back_populates="admin_installments")
     module = relationship("Module", back_populates="admin_installments")
     batch = relationship("Batch", back_populates="admin_installments")
-    installments = relationship("Installment", back_populates="admin_installment")
+    # installments = relationship("Installment", back_populates="admin_installment")

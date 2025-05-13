@@ -42,8 +42,9 @@ class Installment(Base):
     installment_id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
     payment_id = Column(Integer, ForeignKey("payments_tb.payment_id"), nullable=False)
-    admin_installment_id = Column(Integer, ForeignKey("admin_installments_tb.id"), nullable=False)
+    # admin_installment_id = Column(Integer, ForeignKey("admin_installments_tb.id"), nullable=False)
     installment_number = Column(Integer, nullable=False)
+    installment_plan = Column(JSON,nullable = False)
     due_date = Column(Date, nullable=False)
     total_amount = Column(Float, nullable=False)
     amount_due = Column(Float, nullable=False)
@@ -59,7 +60,7 @@ class Installment(Base):
     payment = relationship("Payment", back_populates="installments")
     user = relationship("LmsUsers", back_populates="installments")
     referral_code_info = relationship("ReferralCode", back_populates="installments")
-    admin_installment = relationship("AdminInstallment", back_populates="installments") 
+    # #admin_installment = relationship("AdminInstallment", back_populates="installments") 
 
 
 
