@@ -1,0 +1,38 @@
+# Ignore virtual environments
+env/
+venv/
+.env/
+.venv/
+
+# Ignore environment files (sensitive data!)
+.env
+ilate/auth/.env
+
+# Ignore log files
+*.log
+logs/
+
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore IDE-specific files (optional)
+.vscode/
+.idea/
+
+# Ignore OS specific files (optional)
+.DS_Store
+Thumbs.db
+
+# Ignore specific large file (you can remove if not needed)
+static/uploads/a61e6256-2616-4382-867c-9ed046034bf3_q2latestchanges18.07.zip.html
+
+# Ignore static files (if you don't want to track generated ones)
+static/
+
+# Ignore migrations history (if you don't want to track every change)
+migrations/
+
+# FastAPI specific (if any temporary files or folders are created)
+# Example:
+# uvicorn.pid
