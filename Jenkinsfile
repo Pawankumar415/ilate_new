@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Stop Existing Containers') {
             steps {
-                sh 'cd /mnt/ebs_volume/home/ubuntu/il8-v1/il8-aws-deployment/backend && sudo docker-compose down'
+                sh 'cd /mnt/ebs_volume/home/ubuntu/il8-v1/il8-aws-deployment/backend/app && sudo docker-compose down'
             }
         }
 
@@ -16,13 +16,13 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'cd /mnt/ebs_volume/home/ubuntu/il8-v1/il8-aws-deployment/backend && sudo docker-compose build --no-cache'
+                sh 'cd /mnt/ebs_volume/home/ubuntu/il8-v1/il8-aws-deployment/backend/app && sudo docker-compose build --no-cache'
             }
         }
 
         stage('Start Containers') {
             steps {
-                sh 'cd /mnt/ebs_volume/home/ubuntu/il8-v1/il8-aws-deployment/backend && sudo docker-compose up -d'
+                sh 'cd /mnt/ebs_volume/home/ubuntu/il8-v1/il8-aws-deployment/backend/app && sudo docker-compose up -d'
             }
         }
     }
